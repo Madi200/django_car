@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reports</title>
+</head>
+<body>
+<h1> Cars </h1>
+<table>
+  <thead>
+      <tr>
+          <th>Сar</th>
+          <th>Date</th>
+          <th>Consumption</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for car in transport %}
+        {% now "Y-m-d" as todays_date %}
+        <tr>
+          <td>{{ car }}</td>
+          <td> {% if car.most_recent.date|date:"Y-m-d" >= todays_date %}
+                 {{car.most_recent.date}}
+               {% endif %}{{report.car}}</td>
+          <td>{{ car.most_recent.cons}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+</table>
+
+</body>
+</html>
